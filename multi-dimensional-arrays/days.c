@@ -30,8 +30,8 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 
     assert(leap == 0 ? yearday < 366 : yearday < 367);
 
-    for (i = 1; yearday < daytab[leap][i]; i++)
-        yearday += daytab[leap][i];
+    for (i = 1; yearday > daytab[leap][i]; i++)
+        yearday -= daytab[leap][i];
 
     *pmonth = i;
     *pday = yearday;
@@ -39,13 +39,13 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 
 int main()
 {
-    int day, modmonth, modday;
+    int day, modmonth = 0, modday = 0;
 
-    day = day_of_year(2022, 12, 31);
-    printf("%d\n", day);
+    day = day_of_year(2022, 12, 1);
+    printf("day of the year: %d\n", day);
 
     month_day(2022, day, &modmonth, &modday);
-    printf("month: %d\nday:%d\n", modmonth, modday);
+    printf("month: %d day: %d\n", modmonth, modday);
 
     return 0;
 }
