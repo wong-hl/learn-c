@@ -32,16 +32,16 @@ int main(int argc, char *argv[])
     }
 
     if (argc != 1)
-        printf("Usage: find patter\n");
+        printf("Usage: find -x -n pattern\n");
     else
     {
         while (getLine(line, MAXLINE) > 1)
         {
             lineNum++;
-            if ((strstr(line, argv[1]) != NULL) != except)
+            if ((strstr(line, *argv) != NULL) != except)
             {
                 if (number)
-                    printf("%ld:", lineNum);
+                    printf("%ld:\t", lineNum);
                 printf("%s", line);
                 found++;
             }
